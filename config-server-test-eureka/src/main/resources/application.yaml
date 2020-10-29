@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: eureka-server
+
+server:
+  port: 13579
+
+eureka:
+  instance:
+    hostname: eureka-server
+  client:
+    fetch-registry: true #是否检索服务
+    register-with-eureka: true #表示向Eureka注册自身服务
+    serviceUrl:
+      defaultZone: http://127.0.0.1:13579/eureka
+

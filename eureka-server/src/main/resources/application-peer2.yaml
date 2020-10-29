@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: eureka-server
+
+server:
+  port: 22222
+
+eureka:
+  instance:
+    hostname: peer2
+  client:
+    fetch-registry: true #是否检索服务
+    register-with-eureka: true #表示向Eureka注册自身服务
+    serviceUrl:
+      defaultZone: http://peer1:11111/eureka
+

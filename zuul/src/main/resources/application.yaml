@@ -1,0 +1,18 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://127.0.0.1:11111/eureka,http://127.0.0.1:22222/eureka
+  instance:
+    instanceId: ${spring.application.name}:${server.port}
+    prefer-ip-address: true
+    lease-renewal-interval-in-seconds: 10 #心跳
+    lease-expiration-duration-in-seconds: 30 #判死
+
+zuul:
+#  ignored-services: service-client # 禁用后台服务
+  ignored-services: "*" # 禁用所有后台服务
+  prefix: /api # 服务前缀
+  routes:
+    service-client: # 服务名
+      path: /sc/** # 服务别名
+      sercerId: service-client # 服务ID

@@ -1,0 +1,52 @@
+spring:
+  cloud:
+    zookeeper:
+      enabled: false # zookeeper 服务发现与注册默认关闭
+    stream:
+      bindings:
+        person-source:
+          distination: test-channel
+        person-sink:
+          distination: test-channel
+          group: g1
+  zipkin:
+    base-url: http://127.0.0.1:8091 # Zipkin server地址
+  sleuth:
+    sampler:
+      probability: 1.0 # request采样率 默认10%(0.1)
+  kafka:
+    bootstrap-servers: 127.0.0.1:9092
+    consumer:
+      groupId: g1
+      keyDeserializer: org.apache.kafka.common.serialization.StringDeserializer
+      valueDeserializer: com.wlsite.service.client.kafka.JsonDeserializer
+    producer:
+      keySerializer: org.apache.kafka.common.serialization.StringSerializer
+      valueSerializer: com.wlsite.service.client.kafka.JsonSerializer
+      batchSize: 65536
+      bufferMemory: 524288
+
+eureka:
+  client:
+    enabled: true
+    serviceUrl:
+      defaultZone: http://127.0.0.1:11111/eureka,http://127.0.0.1:22222/eureka
+  instance:
+    instanceId: ${spring.application.name}:${server.port}
+
+feign:
+  hystrix:
+    enabled: true # 开启FEIGN HYSTRIX支持
+
+hystrix: # 配置HYSTRIX(配合FEIGN的时候使用)
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMillseconds: 10000
+    EchoService#echo2(String):
+      execution:
+        isolation:
+          thread:
+            timeoutInMillseconds: 4000

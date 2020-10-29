@@ -1,0 +1,21 @@
+server:
+  port: 6790
+
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/kofzhoubiwen/sc-config.git
+          searchPaths: common_config,db_config,cloud_config
+          label: master
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://127.0.0.1:13579/eureka
+  instance:
+    instanceId: ${spring.application.name}-2:${server.port}
+    prefer-ip-address: true

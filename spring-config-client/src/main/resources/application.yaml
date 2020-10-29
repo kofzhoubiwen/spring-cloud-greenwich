@@ -1,0 +1,45 @@
+server:
+  port: 8084 #0 随机端口
+
+spring:
+  cloud:
+    zookeeper:
+      enabled: false # zookeeper 服务发现与注册默认关闭
+#    consul:
+#      enabled: false # consul 服务发现与注册默认关闭
+eureka:
+  client:
+    enabled: false # eureka 服务发现与注册默认关闭
+
+---
+# Profile For Eureka
+spring:
+  profiles: eureka
+eureka:
+  client:
+    enabled: true
+    registryFetchIntervalSeconds: 5 # 5秒轮询一次
+    serviceUrl:
+      defaultZone: http://127.0.0.1:12345/eureka
+  instance:
+    instanceId: ${spring.application.name}:${server.port}
+---
+# Profile For Zookeeper
+spring:
+  profiles: zookeeper
+  cloud:
+    zookeeper:
+      enabled: true
+      connectString: 127.0.0.1:2181
+---
+# Profile For Consul
+#spring:
+#  profiles: consul
+#  application:
+#    name: consul-client
+#  cloud:
+#    consul:
+#      discovery:
+#        enabled: true
+#        ipAddress: 127.0.0.1
+#        port: 8500

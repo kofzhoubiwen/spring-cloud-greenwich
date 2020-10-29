@@ -1,0 +1,13 @@
+spring:
+  cloud:
+    config:
+      name: test-config # 配置文件名字
+      profile: dev
+      label: master
+      discovery:
+        enabled: true # 开启服务发现
+        service-id: config-server # eureka中的实例名称
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://127.0.0.1:13579/eureka

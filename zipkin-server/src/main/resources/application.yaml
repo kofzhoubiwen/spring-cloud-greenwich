@@ -1,0 +1,12 @@
+management:
+  metrics:
+    web:
+      server:
+        auto-timerequests: false
+server:
+  port: 8091
+
+#解决The bean 'characterEncodingFilter'
+spring:
+  main:
+    allow-bean-definition-overriding: true

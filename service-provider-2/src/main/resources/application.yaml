@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: service-provider-2
+
+eureka:
+  client:
+    enabled: true
+    serviceUrl:
+      defaultZone: http://127.0.0.1:11111/eureka,http://127.0.0.1:22222/eureka
+  instance:
+    instanceId: ${spring.application.name}:${server.port}
+
+server:
+  port: 7777

@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: zuul-client
+
+server:
+  port: 7070 #0 随机端
+  management:
+    endpoints:
+      web:
+        exposure:
+          include=*:

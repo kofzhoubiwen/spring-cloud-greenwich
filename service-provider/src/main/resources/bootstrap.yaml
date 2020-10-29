@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: service-provider
+
+server:
+#  port: 0 #0 随机端口
+  port: 9999
